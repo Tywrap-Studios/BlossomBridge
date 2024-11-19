@@ -13,7 +13,7 @@ public abstract class AbstractConfig implements ConfigClass {
      * Comments work like this, they are allowed as the file is json5 and not plain json.
      */
     @Comment("Several configurations for utility features.")
-    public AbstractConfig.UtilConfig util_config = new AbstractConfig.UtilConfig();
+    public UtilConfig util_config = new UtilConfig();
 
     /**
      * Nested Config.
@@ -33,5 +33,8 @@ public abstract class AbstractConfig implements ConfigClass {
 
     @Override
     public void validate() {
+        if (util_config == null) {
+            util_config = new UtilConfig();
+        }
     }
 }

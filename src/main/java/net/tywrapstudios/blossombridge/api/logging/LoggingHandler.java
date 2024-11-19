@@ -6,8 +6,9 @@ import org.slf4j.Logger;
 /**
  * A general-purpose Logging Handler compatible with the modular configuration system.
  * This class dynamically fetches configuration values for logging behavior.
- * <p> Note that this should only be used when a Main Config object is available.
+ * <p> Note that this should only be used when a Main Config Object (which have to extend {@link AbstractConfig} anyway) object is available.
  * @param <T> The Main Config class of the mod, which is usually already an instance of {@link AbstractConfig}.
+ * @author Tiazzz
  */
 public class LoggingHandler<T extends AbstractConfig> {
     private final Logger MAIN;

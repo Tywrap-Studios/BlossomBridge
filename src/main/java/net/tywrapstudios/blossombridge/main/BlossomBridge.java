@@ -13,7 +13,7 @@ import java.io.File;
 
 public class BlossomBridge implements ModInitializer {
 	private static final File CONFIG_FILE =
-			new File(FabricLoader.getInstance().getConfigDir().toFile(), "blossombridge.json");
+			new File(FabricLoader.getInstance().getConfigDir().toFile(), "blossombridge.json5");
 	public static final ConfigManager<BlossomConfig> CONFIG_MANAGER =
 			new ConfigManager<>(BlossomConfig.class, CONFIG_FILE);
 

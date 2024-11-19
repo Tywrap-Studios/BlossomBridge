@@ -15,6 +15,7 @@ import java.lang.reflect.InvocationTargetException;
 /**
  * Manages the Configuration files for a mod.
  * @param <T> The {@link ConfigClass} that the {@link ConfigManager} will manage.
+ * @author Tiazzz
  */
 public class ConfigManager<T extends ConfigClass> {
     private final Logger LOGGER = LoggerFactory.getLogger(ConfigManager.class);
@@ -79,6 +80,10 @@ public class ConfigManager<T extends ConfigClass> {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public String getConfigJsonAsString() {
+        return jankson.toJson(configInstance).toJson().replace("\t", "  ");
     }
 
     /**
