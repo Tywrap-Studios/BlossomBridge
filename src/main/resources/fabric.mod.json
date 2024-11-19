@@ -9,9 +9,9 @@
 		">> Tiazzz - Coding"
 	],
 	"contact": {
-		"homepage": "https://tywrapstudios.youtrack.cloud/projects/0-2",
+		"homepage": "https://tywrapstudios.youtrack.cloud/projects/0-1",
 		"sources": "https://github.com/Tywrap-Studios/BlossomBridge",
-		"issues": "https://tywrapstudios.youtrack.cloud/issues/BlossomBridge"
+		"issues": "https://github.com/Tywrap-Studios/BlossomBridge/issues"
 	},
 	"license": "MIT",
 	"environment": "*",
