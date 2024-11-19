@@ -54,18 +54,20 @@ public class ConfigManager<T extends ConfigClass> {
             }
 
             // Read the file and deserialize
-            try (FileReader reader = new FileReader(configFile)) {
+            try {
                 this.configInstance = jankson.fromJson(
-                        jankson.load(String.valueOf(reader)),
+                        jankson.load(configFile),
                         configClass
                 );
 
                 if (this.configInstance != null) {
                     this.configInstance.validate();
                 }
+            } catch (Exception e){
+                throw new InvalidConfigFileException("Invalid config file: " + configFile.getName(), e);
             }
 
-        } catch (IOException | InstantiationException | IllegalAccessException | NoSuchMethodException | SyntaxError | InvocationTargetException e) {
+        } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
             e.printStackTrace();
         }
     }
