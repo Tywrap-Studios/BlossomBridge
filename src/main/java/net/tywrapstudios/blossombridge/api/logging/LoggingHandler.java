@@ -2,6 +2,7 @@ package net.tywrapstudios.blossombridge.api.logging;
 
 import net.tywrapstudios.blossombridge.api.config.AbstractConfig;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * A general-purpose Logging Handler compatible with the modular configuration system.
@@ -18,6 +19,12 @@ public class LoggingHandler<T extends AbstractConfig> {
     public LoggingHandler(Logger mainLogger, Logger debugLogger, T config) {
         this.MAIN = mainLogger;
         this.DEBUG = debugLogger;
+        this.config = config;
+    }
+
+    public LoggingHandler(String loggerName, T config) {
+        this.MAIN = LoggerFactory.getLogger(loggerName + "|Main");
+        this.DEBUG = LoggerFactory.getLogger(loggerName + "|DEBUG");
         this.config = config;
     }
 
@@ -91,6 +98,7 @@ public class LoggingHandler<T extends AbstractConfig> {
 
     /**
      * Log a String to the warn level of the debug logger.
+     * <p>Note that this will also send a literalDebug, which is on the debug level, but it simply has {@code [WARN]} prefixed to it.
      *
      * @param message The Message String to log.
      */

@@ -2,12 +2,10 @@ package net.tywrapstudios.blossombridge.api.config;
 
 import blue.endless.jankson.Jankson;
 import blue.endless.jankson.JsonGrammar;
-import blue.endless.jankson.api.SyntaxError;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -33,6 +31,7 @@ public class ConfigManager<T extends ConfigClass> {
         File finalConfigFile;
         this.jankson = Jankson.builder().build();
         this.configClass = configClass;
+        LOGGER.debug("Checking file extension of {}", configFile.getName());
         if (!configFile.getName().endsWith(".json5")) {
             throw new InvalidConfigFileException("Config file must have a .json5 extension: " + configFile.getName());
         } else {
@@ -48,6 +47,7 @@ public class ConfigManager<T extends ConfigClass> {
         try {
             if (!configFile.exists()) {
                 // Create a default configuration if the file doesn't exist
+                LOGGER.debug("Creating new config file for class: {}", configClass.getName());
                 this.configInstance = configClass.getDeclaredConstructor().newInstance();
                 saveConfig();
                 return;
@@ -68,6 +68,7 @@ public class ConfigManager<T extends ConfigClass> {
             }
 
         } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+            LOGGER.error("Something went wrong while loading config file: {}", configFile.getName());
             e.printStackTrace();
         }
     }
@@ -79,7 +80,9 @@ public class ConfigManager<T extends ConfigClass> {
         try (FileWriter writer = new FileWriter(configFile)) {
             String json = jankson.toJson(configInstance).toJson(JsonGrammar.JANKSON);
             writer.write(json);
+            LOGGER.debug("Saved to config file: {}", configFile.getName());
         } catch (IOException e) {
+            LOGGER.error("Something went wrong while saving config file: {}", configFile.getName());
             e.printStackTrace();
         }
     }
