@@ -84,8 +84,14 @@ public class ConfigManager<T extends ConfigClass> {
         }
     }
 
-    public String getConfigJsonAsString() {
-        return jankson.toJson(configInstance).toJson().replace("\t", "  ");
+    /**
+     * Returns the configuration file as a JSON string.
+     * @param comments Whether to include comments in the JSON string.
+     * @param newlines Whether to include newlines in the JSON string.
+     * @return The configuration file as a JSON string.
+     */
+    public String getConfigJsonAsString(boolean comments, boolean newlines) {
+        return jankson.toJson(configInstance).toJson(comments, newlines).replace("\t", "  ");
     }
 
     /**
