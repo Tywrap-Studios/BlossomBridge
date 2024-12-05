@@ -19,7 +19,7 @@ public class BlossomBridge implements ModInitializer {
 
 	private static final Logger MAIN = LoggerFactory.getLogger("BlossomBridge|Main");
 	private static final Logger DEBUG = LoggerFactory.getLogger("BlossomBridge|Debug");
-	public static final LoggingHandler<BlossomConfig> LOGGING = new LoggingHandler<>(MAIN, DEBUG, CONFIG_MANAGER.getConfig());
+	public static final LoggingHandler<BlossomConfig> LOGGING = new LoggingHandler<>(MAIN, DEBUG, CONFIG_MANAGER);
 
 	@Override
 	public void onInitialize() {

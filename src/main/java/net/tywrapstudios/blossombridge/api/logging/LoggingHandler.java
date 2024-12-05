@@ -1,6 +1,7 @@
 package net.tywrapstudios.blossombridge.api.logging;
 
 import net.tywrapstudios.blossombridge.api.config.AbstractConfig;
+import net.tywrapstudios.blossombridge.api.config.ConfigManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,18 +15,29 @@ import org.slf4j.LoggerFactory;
 public class LoggingHandler<T extends AbstractConfig> {
     private final Logger MAIN;
     private final Logger DEBUG;
-    private final T config;
+    private final ConfigManager<T> manager;
 
-    public LoggingHandler(Logger mainLogger, Logger debugLogger, T config) {
+    /**
+     * Construct a new {@link LoggingHandler}.
+     * @param mainLogger A {@link Logger} that logs the main parts of the mod.
+     * @param debugLogger A {@link Logger} that logs the debug parts of the mod.
+     * @param configManager Your {@link ConfigManager}, this is needed to get various values from your Config.
+     */
+    public LoggingHandler(Logger mainLogger, Logger debugLogger, ConfigManager<T> configManager) {
         this.MAIN = mainLogger;
         this.DEBUG = debugLogger;
-        this.config = config;
+        this.manager = configManager;
     }
 
-    public LoggingHandler(String loggerName, T config) {
-        this.MAIN = LoggerFactory.getLogger(loggerName + "|Main");
-        this.DEBUG = LoggerFactory.getLogger(loggerName + "|DEBUG");
-        this.config = config;
+    /**
+     * Construct a new {@link LoggingHandler}.
+     * @param name A {@link String} that represents your mod's name, {@link Logger}{@code s} will automatically be made for you.
+     * @param configManager Your {@link ConfigManager}, this is needed to get various values from your Config.
+     */
+    public LoggingHandler(String name, ConfigManager<T> configManager) {
+        this.MAIN = LoggerFactory.getLogger(name + "|Main");
+        this.DEBUG = LoggerFactory.getLogger(name + "|Debug");
+        this.manager = configManager;
     }
 
     /**
@@ -43,7 +55,7 @@ public class LoggingHandler<T extends AbstractConfig> {
      * @param message The Message String to log.
      */
     public void warn(String message) {
-        if (!config.util_config.suppress_warns) {
+        if (!conf().util_config.suppress_warns) {
             MAIN.warn(message);
         }
     }
@@ -54,7 +66,7 @@ public class LoggingHandler<T extends AbstractConfig> {
      * @param message The Message String to log.
      */
     public void error(String message) {
-        if (!config.util_config.suppress_warns) {
+        if (!conf().util_config.suppress_warns) {
             MAIN.error(message);
         }
     }
@@ -65,7 +77,7 @@ public class LoggingHandler<T extends AbstractConfig> {
      * @param message The Message String to log.
      */
     public void debug(String message) {
-        if (config.util_config.debug_mode) {
+        if (conf().util_config.debug_mode) {
             DEBUG.info(message);
         }
         literalDebug(message);
@@ -77,7 +89,7 @@ public class LoggingHandler<T extends AbstractConfig> {
      * @param message The Message String to log.
      */
     public void literalDebug(String message) {
-        if (config.util_config.debug_mode) {
+        if (conf().util_config.debug_mode) {
             DEBUG.debug(message);
         }
     }
@@ -103,10 +115,14 @@ public class LoggingHandler<T extends AbstractConfig> {
      * @param message The Message String to log.
      */
     public void debugWarning(String message) {
-        if (config.util_config.debug_mode && !config.util_config.suppress_warns) {
+        if (conf().util_config.debug_mode && !conf().util_config.suppress_warns) {
             DEBUG.warn(message);
         }
         literalDebug("[WARN] " + message);
+    }
+
+    private AbstractConfig conf() {
+        return manager.getConfig();
     }
 }
 
