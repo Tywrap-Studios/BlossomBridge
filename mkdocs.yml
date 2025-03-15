@@ -1,0 +1,94 @@
+site_name: BlossomBridge Documentation
+site_description: The documentation for the API mod that is Tywrap's truly.
+site_url: https://docs.tiazzz.me/BlossomBridge/
+repo_url: https://github.com/Tywrap-Studios/BlossomBridge/
+theme:
+  name: material
+  palette:
+    - scheme: slate
+      toggle:
+        icon: octicons/sun-16
+        name: Switch to Dark mode
+      primary: deep purple
+      accent: pink
+    - scheme: default
+      toggle:
+        icon: octicons/moon-16
+        name: Switch to Light mode
+      primary: deep purple
+      accent: pink
+  logo: assets/Main_Transparent.png
+  favicon: assets/favicon.png
+  icon:
+    annotation: material/star-four-points-circle
+    admonition:
+      note: octicons/tag-16
+      abstract: octicons/checklist-16
+      info: octicons/info-16
+      tip: octicons/zap-16
+      success: octicons/check-16
+      question: octicons/question-16
+      warning: octicons/alert-16
+      failure: octicons/x-circle-16
+      danger: fontawesome/solid/skull
+      bug: octicons/bug-16
+      example: octicons/beaker-16
+      quote: fontawesome/solid/quote-left
+  features:
+    - content.tabs.link
+    - content.tooltips
+    - navigation.footer
+    - navigation.indexes
+    - content.code.copy
+    - content.annotations
+    - content.code.annotate
+nav:
+  - Welcome to BlossomBridge: index.md
+  - Developers:
+      - Getting Started:
+        - developers/index.md
+      - API:
+        - api/index.md
+        - Configuration:
+          - Creating a ConfigClass: api/config.md
+          - Ranges, Sets and Validation: api/config_validation.md
+          - Config Files: api/config_managers.md
+        - Logging:
+          - Creating a LoggingHandler: api/logging.md
+          - Using a LoggingHandler: api/logging_usage.md
+  - Updating: developers/updating.md
+  - Documentation Tags: tags.md
+plugins:
+  - search
+  - meta
+  - tags
+markdown_extensions:
+  - attr_list
+  - admonition
+  - footnotes
+  - md_in_html
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.details
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.tilde
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.critic
+extra:
+  version:
+    provider: mike
+copyright: Copyright &copy; 2025 Tywrap Studios; Released under the MIT License
