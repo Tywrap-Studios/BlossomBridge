@@ -26,3 +26,5 @@ jobs:
             token: ${{ secrets.USER_TOKEN }}
       -   name: Deploy docs
           run: mike deploy --push --update-aliases ${{ github.event.release.tag_name }} latest
+      -   name: Set default
+          run: mike set-default --push latest
