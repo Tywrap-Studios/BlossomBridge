@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Configure Git Credentials
         run: |
           git config user.name github-actions[bot]
@@ -25,8 +28,12 @@ jobs:
           restore-keys: |
             mkdocs-material-
       - name: Install Dependencies
-      - run: pip install mkdocs-material mkdocs-rss-plugin mike
+        run: pip install mkdocs-material mkdocs-rss-plugin mike
       - name: Deploy docs
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: mike deploy --push --update-aliases ${{ github.event.release.tag_name }} latest
       - name: Set default
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: mike set-default --push latest
