@@ -4,6 +4,7 @@ site_url: https://docs.tiazzz.me/BlossomBridge/
 repo_url: https://github.com/Tywrap-Studios/BlossomBridge/
 theme:
   name: material
+  custom_dir: doc-overrides
   palette:
     - scheme: slate
       toggle:

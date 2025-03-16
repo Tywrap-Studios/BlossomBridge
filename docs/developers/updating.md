@@ -1,25 +1,16 @@
-# 1.1.1 -> 2.0.0
+---
+tags:
+  - Developer Guides
+---
+# 2.0.0 -> 2.0.1
 
-!!! danger "Breaking changes"
-    This update has breaking changes. It is suggested to update and take precautions.
-!!! danger "Unstable release"
-    This release may be unstable in some situations, if you do end up having problems, report them at the [GitHub issue tracker](https://github.com/Tywrap-Studios/BlossomBridge/issues).  
-    We will soon try to release a more stable version if needed.
+2.0.1 focused mainly on fixing minor flaws the 2.0.0 update had, updating is suggested, but take note of the problems 2.0.0 serves.
 
-## Changes:
-1. Changed codebase to Kotlin.
-2. Made `LoggingHandler.literalDebug()` always ignore config.
-3. Made `ConfigManager.loadConfig()` also run `saveConfig()` after validation.
-4. Removed `main` package in favor of a very plain `ModInitializer` object.
-5. {--AbstractConfigClass--} -> {++BasicConfigClass++} (Renamed)
-6. {--net.tywrapstudios.blossombridge--} -> {++org.tywrapstudios.blossombridge++} (Renamed)
+## Patches:
+1. Wrongly formatted MC version dependency in `fabric.mod.json`.
+2. `ConfigManager.getConfig()` is not null safe, while it used to be before the Kotlin rewrite.  
+   (oh the irony)
 
 ## Updating
-You don't have to change any of your usage code, but take note of the following:
-!!! warning "Package change"
-    Due to change 6, you are forced to change your imports.
-
-!!! note "New main config object"
-    Due to change 5, you have to implement `BasicConfigClass` instead now.
-
-Newer versions will try to not be as breaking as this one, hence for the choice to change the Major version to `2`.
+This patch is mostly internal, so no codebase changes are technically needed.  
+Do note that you can remove any null checks for your config if you have implemented them.

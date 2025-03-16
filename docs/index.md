@@ -9,4 +9,3 @@ BlossomBridge is a small API for Tywrap Studios Mods, that adds a few minor thin
 ## Guides
 [Depending on BlossomBridge :material-plus-circle-outline:](developers/index.md){.md-button}
 [API Reference :fontawesome-solid-code:](api/index.md){.md-button}
-    
