@@ -19,11 +19,10 @@ jobs:
             python-version: 3.x
       -   name: Install mkdocs and mike
           run: pip install mkdocs-material mike
-      -   name: Set up git credentials
-          uses: oleksiyrudenko/gha-git-credentials@v2-latest
-          with:
-            global: true
-            token: ${{ secrets.USER_TOKEN }}
+      - name: Configure Git Credentials
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
       -   name: Deploy docs
           run: mike deploy --push --update-aliases ${{ github.event.release.tag_name }} latest
       -   name: Set default
