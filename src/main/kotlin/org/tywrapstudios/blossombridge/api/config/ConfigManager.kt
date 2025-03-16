@@ -13,12 +13,12 @@ import java.io.IOException
  * @param configClass The [ConfigClass] that the [ConfigManager] will manage.
  * @param configFile The [File] that the [ConfigManager] will use to save and load the configuration. Note that this currently has to be a JSON5 file.
  */
-class ConfigManager<T : ConfigClass?>(configClass: Class<T>, configFile: File) {
+class ConfigManager<T : ConfigClass>(configClass: Class<T>, configFile: File) {
     private val logger: Logger = LoggerFactory.getLogger(ConfigManager::class.java)
     private val jankson: Jankson
     private val configClass: Class<T>
     private val configFile: File
-    private var config: T? = null
+    private lateinit var config: T
 
     init {
         val finalConfigFile: File
@@ -53,15 +53,13 @@ class ConfigManager<T : ConfigClass?>(configClass: Class<T>, configFile: File) {
                     configClass
                 )
 
-                if (this.config != null) {
-                    config!!.validate()
-                    this.saveConfig()
-                }
+                this.config.validate()
+                this.saveConfig()
             } catch (e: Exception) {
                 throw InvalidConfigFileException("Invalid config file: $configFile.name", e)
             }
         } catch (e: Exception) {
-            logger.error("Something went wrong while loading config file: $configFile.name")
+            logger.error("Something went wrong while loading config file: $configFile.name", e)
             e.printStackTrace()
         }
     }
@@ -89,14 +87,14 @@ class ConfigManager<T : ConfigClass?>(configClass: Class<T>, configFile: File) {
      * @return The configuration file as a JSON string.
      */
     fun getConfigJsonAsString(comments: Boolean, newlines: Boolean): String {
-        return jankson.toJson(config).toJson(comments, newlines).replace("\t", "  ")
+        return jankson.toJson(this.config).toJson(comments, newlines).replace("\t", "  ")
     }
 
     /**
      * Returns the current config state.
      * @return The config.
      */
-    fun getConfig(): T? {
+    fun getConfig(): T {
         return this.config
     }
 }
