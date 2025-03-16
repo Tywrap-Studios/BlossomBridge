@@ -47,7 +47,7 @@ You can get the BlossomBridge sources from the JitPack :simple-jitpack: maven re
         }
         ```
 
-### Finalizing
+### Finalizing [![](https://jitpack.io/v/Tywrap-Studios/BlossomBridge.svg)](https://jitpack.io/#Tywrap-Studios/BlossomBridge)
 Finally, add the following to your `gradle.properties` file:
 ```properties
 blossombridge_version=x.y.z
