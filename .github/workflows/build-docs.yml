@@ -3,7 +3,8 @@ name: Release Documentation
 on:
   release:
     types: [published]
-
+permissions:
+  contents: write
 jobs:
   docs:
     runs-on: ubuntu-latest
