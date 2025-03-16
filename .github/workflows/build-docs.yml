@@ -28,8 +28,8 @@ jobs:
         with:
           python-version: 3.x
 
-      - name: Install mkdocs, plugins and mike
-        run: pip install mkdocs-material mkdocs-rss-plugin mike
+      - name: Install mkdocs and mike
+        run: pip install mkdocs-material mike
 
       - name: Deploy docs
         run: mike deploy --push --update-aliases ${{ github.event.release.tag_name }} latest
