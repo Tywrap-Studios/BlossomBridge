@@ -45,7 +45,7 @@ class LoggingHandler<T : BasicConfigClass> {
      * @param message The Message String to log.
      */
     fun info(message: String) {
-        main.info(message)
+        this.main.info(message)
     }
 
     /**
@@ -54,8 +54,8 @@ class LoggingHandler<T : BasicConfigClass> {
      * @param message The Message String to log.
      */
     fun warn(message: String) {
-        if (!conf().util_config.suppress_warns) {
-            main.warn(message)
+        if (!this.conf().util_config.suppress_warns) {
+            this.main.warn(message)
         }
     }
 
@@ -65,8 +65,8 @@ class LoggingHandler<T : BasicConfigClass> {
      * @param message The Message String to log.
      */
     fun error(message: String) {
-        if (!conf().util_config.suppress_warns) {
-            main.error(message)
+        if (!this.conf().util_config.suppress_warns) {
+            this.main.error(message)
         }
     }
 
@@ -76,10 +76,10 @@ class LoggingHandler<T : BasicConfigClass> {
      * @param message The Message String to log.
      */
     fun debug(message: String) {
-        if (conf().util_config.debug_mode) {
-            debug.info(message)
+        if (this.conf().util_config.debug_mode) {
+            this.debug.info(message)
         }
-        literalDebug(message)
+        this.literalDebug(message)
     }
 
     /**
@@ -88,7 +88,7 @@ class LoggingHandler<T : BasicConfigClass> {
      * @param message The Message String to log.
      */
     fun literalDebug(message: String) {
-        debug.debug(message)
+        this.debug.debug(message)
     }
 
     /**
@@ -97,12 +97,12 @@ class LoggingHandler<T : BasicConfigClass> {
      * @param message The Message String to log.
      */
     fun debugWarning(message: String) {
-        if (conf().util_config.debug_mode && !conf().util_config.suppress_warns) {
-            debug.warn(message)
+        if (this.conf().util_config.debug_mode && !this.conf().util_config.suppress_warns) {
+            this.debug.warn(message)
         }
     }
 
     private fun conf(): T {
-        return manager.getConfig()!!
+        return this.manager.getConfig()
     }
 }

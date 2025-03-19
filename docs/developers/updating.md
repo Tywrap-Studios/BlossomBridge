@@ -2,15 +2,13 @@
 tags:
   - Developer Guides
 ---
-# 2.0.0 -> 2.0.1
+# 2.0.1 -> 2.0.2
 
-2.0.1 focused mainly on fixing minor flaws the 2.0.0 update had, updating is suggested, but take note of the problems 2.0.0 serves.
+2.0.2 again focused mainly on fixing minor flaws the 2.0.0 update had, updating is suggested, but take note of the problems 2.0.0 serves.
 
 ## Patches:
-1. Wrongly formatted MC version dependency in `fabric.mod.json`.
-2. `ConfigManager.getConfig()` is not null safe, while it used to be before the Kotlin rewrite.  
-   (oh the irony)
+1. The Kotlin `BasicConfigClass` isn't serializable by Jankson, so it was replaced with a Java class.
 
 ## Updating
 This patch is mostly internal, so no codebase changes are technically needed.  
-Do note that you can remove any null checks for your config if you have implemented them.
+Do note that if your main config didn't work due to the Kotlin class, you might need to re-implement it with the new Java class.

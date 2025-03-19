@@ -2,10 +2,11 @@ package org.tywrapstudios.blossombridge.api.config
 
 import blue.endless.jankson.Comment
 
+@Deprecated("Use the Java version of this class instead.", ReplaceWith("BasicConfigClass"))
 /**
  * Base config file that can be extended by a "main" Config class. It has some options required for logging.
  */
-abstract class BasicConfigClass : ConfigClass {
+abstract class BasicConfigClassKt : ConfigClass {
 
     /**
      * Comments work like this, they are allowed as the file is json5 and not plain json.

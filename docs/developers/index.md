@@ -60,7 +60,7 @@ and this to your `fabric.mod.json`:
   }
 }
 ```
-And replace `x.y.z` with your major, minor and patch version, e.g. {==2.0.0==}.
+And replace `x.y.z` with your major, minor and patch version, e.g. {==2.0.2==}.
 ???+ tip "When using JitPack"
     JitPack might not have made an Artifact yet, if your imports are failing, go over to the JitPack page of the repository and check if a build might have failed.
 ???+ tip "Local versioning"
