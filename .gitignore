@@ -1,58 +1,60 @@
 # gradle
-
 .gradle/
 build/
 out/
 classes/
+.gradle
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
 
 # eclipse
-
 *.launch
+.apt_generated
+.factorypath
+.settings
+.springBeans
+.sts4-cache
+!**/src/main/**/bin/
+!**/src/test/**/bin/
 
 # idea
-
 .idea/
 *.iml
 *.ipr
 *.iws
+.idea/modules.xml
+.idea/jarRepositories.xml
+.idea/compiler.xml
+.idea/libraries/
+!**/src/main/**/out/
+!**/src/test/**/out/
 
 # vscode
-
 .settings/
 .vscode/
 bin/
 .classpath
 .project
 
-# macos
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
 
+# macos
 *.DS_Store
 
-# fabric
-
-.dev
-
-# run dir
-
-logs/
-crash-reports/
-.mixin.out/
-.fabric/
-debug/
-downloads/
-options.txt
-usercache.json
-saves/
-screenshots/
-data/
-
-
 # java
-
 hs_err_*.log
 replay_*.log
 *.hprof
 *.jfr
+
+# kotlin
+.kotlin
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

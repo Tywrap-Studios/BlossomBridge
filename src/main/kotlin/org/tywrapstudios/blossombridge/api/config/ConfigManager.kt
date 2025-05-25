@@ -14,7 +14,7 @@ import java.io.IOException
  * @param configFile The [File] that the [ConfigManager] will use to save and load the configuration. Note that this currently has to be a JSON5 file.
  */
 class ConfigManager<T : ConfigClass>(configClass: Class<T>, configFile: File) {
-    private val logger: Logger = LoggerFactory.getLogger(ConfigManager::class.java)
+    private val classLogger: Logger = LoggerFactory.getLogger(ConfigManager::class.java)
     private val jankson: Jankson
     private val configClass: Class<T>
     private val configFile: File
@@ -24,7 +24,7 @@ class ConfigManager<T : ConfigClass>(configClass: Class<T>, configFile: File) {
         val finalConfigFile: File
         this.jankson = Jankson.builder().build()
         this.configClass = configClass
-        logger.debug("Checking file extension of {}", configFile.name)
+        classLogger.debug("Checking file extension of {}", configFile.name)
         if (!configFile.name.endsWith(".json5")) {
             throw InvalidConfigFileException("Config file must have a .json5 extension: " + configFile.name)
         } else {
@@ -40,7 +40,7 @@ class ConfigManager<T : ConfigClass>(configClass: Class<T>, configFile: File) {
         try {
             if (!configFile.exists()) {
                 // Create a default configuration if the file doesn't exist
-                logger.debug("Creating new config file for class: {}", configClass.name)
+                classLogger.debug("Creating new config file for class: {}", configClass.name)
                 this.config = configClass.getDeclaredConstructor().newInstance()
                 this.saveConfig()
                 return
@@ -59,7 +59,7 @@ class ConfigManager<T : ConfigClass>(configClass: Class<T>, configFile: File) {
                 throw InvalidConfigFileException("Invalid config file: $configFile.name", e)
             }
         } catch (e: Exception) {
-            logger.error("Something went wrong while loading config file: $configFile.name", e)
+            classLogger.error("Something went wrong while loading config file: $configFile.name", e)
             e.printStackTrace()
         }
     }
@@ -72,10 +72,10 @@ class ConfigManager<T : ConfigClass>(configClass: Class<T>, configFile: File) {
             FileWriter(configFile).use { writer ->
                 val json: String = jankson.toJson(config).toJson(JsonGrammar.JANKSON)
                 writer.write(json)
-                logger.debug("Saved to config file: {}.name", configFile)
+                classLogger.debug("Saved to config file: {}.name", configFile)
             }
         } catch (e: IOException) {
-            logger.error("Something went wrong while saving config file: $configFile.name")
+            classLogger.error("Something went wrong while saving config file: $configFile.name")
             e.printStackTrace()
         }
     }
