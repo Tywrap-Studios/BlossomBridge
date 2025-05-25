@@ -5,9 +5,11 @@ tags:
 ---
 # Configuration
 
-> BlossomBridge provides a simple, albeit plain, way to add Config to your mod using JSON5 files loaded using Jankson.
+> BlossomBridge provides a simple, albeit plain, way to add Config to your project using JSON5 files loaded using Jankson.
 
 Start by making a new class and implementing `ConfigClass`:
+!!! warning 
+    Note it should be a Java class as Jankson cannot parse and read Kotlin classes!
 ```java title="ConfigClassExample.java",linenums="1"
 -8<- "docs/assets/code_examples/ConfigClassExample.java:one"
 ```

@@ -31,7 +31,7 @@ public class ConfigClassExample implements ConfigClass {
 @Comment("Very cool comment!")
 public boolean foo = false;
 @Comment("""
-        Lorem ipsum is just a silly placeholder text that can definetly show the following:
+        Lorem ipsum is just a silly placeholder text that can definitely show the following:
         Having to use multi-line comments!""")
 public boolean bar = true;
 // -8<- [end:janksonComments]

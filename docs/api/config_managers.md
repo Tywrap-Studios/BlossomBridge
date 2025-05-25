@@ -18,15 +18,16 @@ In order to create a new `ConfigManager` we need a few things:
 1. A `File` where we store our json5 code.
 2. A `ConfigClass` where we get our data from.
 
-Create a new `ConfigManager` in your `ModInitializer` class, let's use our `ValidateExample` class as the `ConfigClass`:
+!!! Info
+    In this example, we are picturing you are using BBAPI for a Minecraft mod. But in theory, the same logic applies to any project!
+
+Create a new `ConfigManager` in your initialising class, let's use our `ValidateExample` class as the `ConfigClass`:
 ```java title="ExampleMod.java",linenums="1",hl_lines="2-5"
 -8<- "docs/assets/code_examples/ExampleMod.java:one"
 ```
-??? note
-    `ConfigManager` has a {==Type Parameter==} of `T extends ConfigClass?`, meaning you need to put a class that implements `ConfigClass` in between the `<>`.
 
 Currently, though, this still does nothing. Because in order to actually make Jankson start reading from and writing to the
-Config file, you need to load it as follows:
+Config file, you need to load it once during initialisation as follows:
 ```java title="ExampleMod.java",linenums="1",hl_lines="7"
 -8<- "docs/assets/code_examples/ExampleMod.java:two"
 ```
@@ -42,9 +43,12 @@ Example Usage:
 -8<- "docs/assets/code_examples/ExampleMod.java:three"
 ```
 
-!!! note
-    You can find your config file at `run/config/<name>.json5` unless you set a different `File` for the `ConfigManager`.
+??? note "Fabric mod config path"
+    In this example, where it's a Minecraft Fabric mod, you can find your config file at `run/config/<name>.json5` unless you set a different `File` for the `ConfigManager`.
 
+!!! warning "Applying changes"
+    If a user changes any values inside of the `.json5` file they won't be immediately applied to your config instance.
+    Before you can apply these changes, you need to reload your config file. You do this by running the same method, `:::java ConfigManager.loadConfig()`
 
 And that's it! It might be finicky at first, but messing around with it as much as you can is definitely suggested and especially fun if it works!
 

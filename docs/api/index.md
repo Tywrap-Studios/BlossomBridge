@@ -9,9 +9,7 @@ In this part of the docs we will look at a basic setup using BlossomBridge!
         ```groovy title="build.gradle",hl_lines="5"
         dependencies {
             ...
-
-	        // blossombridge
-	        implementation(include("blue.endless:jankson:${project.jankson_version}"))
+	        implementation include "blue.endless:jankson:${project.jankson_version}"
         }
         ```
     And add `:::properties jankson_version=1.2.3` to your `gradle.properties` :octicons-file-code-16: file. (or any other version you may want to use)
