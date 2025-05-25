@@ -11,7 +11,7 @@ Want to use this API in your mod?
 Feel free to! But keep in mind that a lot of stuff in here is specific to our workflows, so it may not be applicable to your use case.  
 Plus, the code is pretty minimal at the moment, so it's not really worth it half the time.  
 ### Gradle Setup
-BlossomBridge can easily be depended on like any other Fabric mod.  
+BlossomBridge can easily be depended on like any other API.  
 For a full guide, look at our documentation site: https://docs.tiazzz.me/BlossomBridge/latest/developers/
 
 As an example, I suggest taking a look at [Constructra](https://github.com/Tywrap-Studios/Constructra), which has a lot of this API's code implemented and used.
