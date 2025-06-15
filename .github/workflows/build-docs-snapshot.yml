@@ -1,0 +1,36 @@
+name: Release Documentation on Master-Snapshot
+
+on:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: write
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Git credentials
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git
+
+      - name: Set up python 3
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.x
+
+      - name: Install mkdocs and mike
+        run: pip install mkdocs-material mike
+
+      - name: Deploy docs
+        run: mike deploy --push --update-aliases master-SNAPSHOT snapshot
