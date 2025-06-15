@@ -11,7 +11,7 @@ repositories {
 
 dependencies {
     // Jankson (JSON5 parser)
-    implementation "blue.endless:jankson:${jankson_version}"
+    api "blue.endless:jankson:${jankson_version}"
     // SLF4J (Simple Logging Facade for Java)
     implementation "org.slf4j:slf4j-api:${slf4j_version}"
 
