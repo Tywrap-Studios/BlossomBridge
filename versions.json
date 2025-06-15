@@ -1,5 +1,12 @@
 [
   {
+    "version": "master-SNAPSHOT",
+    "title": "master-SNAPSHOT",
+    "aliases": [
+      "snapshot"
+    ]
+  },
+  {
     "version": "2.0.2",
     "title": "2.0.2",
     "aliases": [
