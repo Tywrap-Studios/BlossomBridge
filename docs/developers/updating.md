@@ -9,7 +9,7 @@ tags:
 ## Changes:
 1. The API is no longer a mod, but a library that can be used in any Java or Kotlin project.
     1. It no longer has mod metadata (such as an id, name, version, etc.), and won't be loaded by any mod loader.
-    2. Jankson is now included using the `api` 
+    2. Jankson is now "included" using the `api` keyword in the build script.
 2. The deprecation of `BasicConfigClassKt` is now marked as `DeprecationLevel.ERROR`. If you haven't migrated to the new Java equivalent yet, do so. Will be fully removed in the next patch when possible.
 3. `LoggingHandler` now has methods to get the current `Logger` instances.
 4. `LoggingHandler` is now capable of running vararg log methods, to make full use of SLF4J.
