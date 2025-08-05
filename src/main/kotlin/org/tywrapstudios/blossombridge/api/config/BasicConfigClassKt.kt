@@ -2,7 +2,7 @@ package org.tywrapstudios.blossombridge.api.config
 
 import blue.endless.jankson.Comment
 
-@Deprecated("Use the Java version of this class instead.", ReplaceWith("BasicConfigClass"))
+@Deprecated("Use the Java version of this class instead.", ReplaceWith("BasicConfigClass"), level = DeprecationLevel.ERROR)
 /**
  * Base config file that can be extended by a "main" Config class. It has some options required for logging.
  */
