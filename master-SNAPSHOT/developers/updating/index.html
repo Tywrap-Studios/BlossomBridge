@@ -948,9 +948,11 @@ Note: you're not viewing the latest official version.
 <p>2.1.0 had one goal: make the project available across any project.</p>
 <h2 id="changes">Changes:</h2>
 <ol>
-<li>The API is no longer a mod, but a library that can be used in any Java or Kotlin project.</li>
+<li>The API is no longer a mod, but a library that can be used in any Java or Kotlin project.<ol>
 <li>It no longer has mod metadata (such as an id, name, version, etc.), and won't be loaded by any mod loader.</li>
 <li>Jankson is now included using the <code>api</code> </li>
+</ol>
+</li>
 <li>The deprecation of <code>BasicConfigClassKt</code> is now marked as <code>DeprecationLevel.ERROR</code>. If you haven't migrated to the new Java equivalent yet, do so. Will be fully removed in the next patch when possible.</li>
 <li><code>LoggingHandler</code> now has methods to get the current <code>Logger</code> instances.</li>
 <li><code>LoggingHandler</code> is now capable of running vararg log methods, to make full use of SLF4J.</li>
