@@ -24,7 +24,7 @@ You can get the BlossomBridge sources from the JitPack :simple-jitpack: maven re
     }
     ```
 === "Kotlin"
-    ```groovy title="build.gradle.kts",hl_lines="2-4 9"
+    ```kotlin title="build.gradle.kts",hl_lines="2-4 9"
     repositories {
         maven("https://jitpack.io") {
             name = "JitPack"
@@ -33,14 +33,15 @@ You can get the BlossomBridge sources from the JitPack :simple-jitpack: maven re
 
     dependencies {
         ...
-        implementation "com.github.Tywrap-Studios:BlossomBridge:${project.blossombridge_version}"
+        implementation("com.github.Tywrap-Studios:BlossomBridge:${project.blossombridge_version}")
     }
     ```
 
 ??? tip "Using Local files"
     Firstly, obtain a `blossombridge-<version>-sources.jar` from any of the following sources:
     === "Platform"
-        BlossomBridge **pre-2.1.0** is only available on Modrinth. You can get the jars [here](https://modrinth.com/mod/blossombridge).
+        BlossomBridge **pre-2.1.0** is available on Modrinth. You can get the jars [here](https://modrinth.com/mod/blossombridge/versions).
+        Alternatively, you can get the latest version from the [Releases tab](https://github.com/Tywrap-Studios/BlossomBridge/releases) of the repository.
     === "Building"
         Clone the repository and run `./gradlew build` in the root directory of the project. Your sources jar will be in a folder called `build/libs`.
     === "GitHub Actions"
@@ -52,15 +53,42 @@ You can get the BlossomBridge sources from the JitPack :simple-jitpack: maven re
     After getting said file, it is best to make a new directory in your project called `libs/`, and putting the jar inside it.
 
     Now you can manually add it to your repositories and dependencies:
+    <div class="annotate" markdown>
     === "Groovy"
-        ```groovy title="build.gradle",hl_lines="5"
+        ```groovy title="build.gradle",hl_lines="3-5 12"
+        repositories {
+            ...
+            flatDir {
+                dirs("path/too/libs") // (1)!
+            }
+        }
+
         dependencies {
             ...
 
-	        // blossombridge
-	        implementation files("libs/blossombridge-${project.blossombridge_version}-sources.jar")
+	        // BlossomBridge
+	        implementation ":BlossomBridge:${project.blossombridge_version}"
         }
         ```
+    === "Kotlin"
+        ```kotlin title="build.gradle.kts",hl_lines="3-5 12"
+        repositories {
+            ...
+            flatDir {
+                dirs("path/too/libs") // (1)!
+            }
+        }
+
+        dependencies {
+            ...
+
+	        // BlossomBridge
+	        implementation(":BlossomBridge:${project.blossombridge_version}")
+        }
+        ```
+    </div>
+
+    1.  Tip: you can use `:::groovy ${rootProject.projectDir}` to reference the root of your project.
 
 ### Finalizing [![](https://jitpack.io/v/Tywrap-Studios/BlossomBridge.svg)](https://jitpack.io/#Tywrap-Studios/BlossomBridge)
 Finally, add the following to your `gradle.properties` file:
@@ -71,4 +99,5 @@ And replace `x.y.z` with your major, minor and patch version, e.g. {==2.1.0==}.
 ???+ tip "When using JitPack"
     JitPack might not have made an Artifact yet, if your imports are failing, go over to the JitPack page of the repository and check if a build might have failed.
 ???+ tip "Local versioning"
-    If you are using a local jar, check if the version in the file name corresponds with the version you're trying to use.
+    If you are using a local jar, check if the version in the file name corresponds with the version you're trying to use.  
+    Because of the use of `flatDir`, you don't need to include the artifact pat
