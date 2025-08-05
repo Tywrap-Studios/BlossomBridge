@@ -49,6 +49,16 @@ class LoggingHandler<T : BasicConfigClass> {
     }
 
     /**
+     * Log a String to the info level of the main logger.
+     * Use `{}` for formatting, like SLF4J.
+     * @param message The Message String to log.
+     * @param args The arguments to format the message with.
+     */
+    fun info(message: String, vararg args: Object) {
+        this.main.info(message, *args)
+    }
+
+    /**
      * Log a String to the warn level of the main logger.
      *
      * @param message The Message String to log.
@@ -60,6 +70,19 @@ class LoggingHandler<T : BasicConfigClass> {
     }
 
     /**
+     * Log a String to the warn level of the main logger.
+     * Use `{}` for formatting, like SLF4J.
+     *
+     * @param message The Message String to log.
+     * @param args The arguments to format the message with.
+     */
+    fun warn(message: String, vararg args: Object) {
+        if (!this.conf().util_config.suppress_warns) {
+            this.main.warn(message, *args)
+        }
+    }
+
+    /**
      * Log a String to the error level of the main logger.
      *
      * @param message The Message String to log.
@@ -67,6 +90,19 @@ class LoggingHandler<T : BasicConfigClass> {
     fun error(message: String) {
         if (!this.conf().util_config.suppress_warns) {
             this.main.error(message)
+        }
+    }
+
+    /**
+     * Log a String to the error level of the main logger.
+     * Use `{}` for formatting, like SLF4J.
+     *
+     * @param message The Message String to log.
+     * @param args The arguments to format the message with.
+     */
+    fun error(message: String, vararg args: Object) {
+        if (!this.conf().util_config.suppress_warns) {
+            this.main.error(message, *args)
         }
     }
 
@@ -83,12 +119,37 @@ class LoggingHandler<T : BasicConfigClass> {
     }
 
     /**
+     * Log a String to the info and debug level of the debug logger.
+     * Use `{}` for formatting, like SLF4J.
+     *
+     * @param message The Message String to log.
+     * @param args The arguments to format the message with.
+     */
+    fun debug(message: String, vararg args: Object) {
+        if (this.conf().util_config.debug_mode) {
+            this.debug.info(message, *args)
+        }
+        this.literalDebug(message, *args)
+    }
+
+    /**
      * Log a String to the debug level of the debug logger.
      *
      * @param message The Message String to log.
      */
     fun literalDebug(message: String) {
         this.debug.debug(message)
+    }
+
+    /**
+     * Log a String to the debug level of the debug logger.
+     * Use `{}` for formatting, like SLF4J.
+     *
+     * @param message The Message String to log.
+     * @param args The arguments to format the message with.
+     */
+    fun literalDebug(message: String, vararg args: Object) {
+        this.debug.debug(message, *args)
     }
 
     /**
@@ -100,6 +161,27 @@ class LoggingHandler<T : BasicConfigClass> {
         if (this.conf().util_config.debug_mode && !this.conf().util_config.suppress_warns) {
             this.debug.warn(message)
         }
+    }
+
+    /**
+     * Log a String to the warn level of the debug logger.
+     * Use `{}` for formatting, like SLF4J.
+     *
+     * @param message The Message String to log.
+     * @param args The arguments to format the message with.
+     */
+    fun debugWarning(message: String, vararg args: Object) {
+        if (this.conf().util_config.debug_mode && !this.conf().util_config.suppress_warns) {
+            this.debug.warn(message, *args)
+        }
+    }
+
+    fun getMain(): Logger {
+        return this.main
+    }
+
+    fun getDebug(): Logger {
+        return this.debug
     }
 
     private fun conf(): T {
